@@ -29,6 +29,11 @@ module RSpec
         @subject.msg1.msg2.msg3.msg4.should equal(:first)
         @subject.msg5.msg2.msg3.msg4.should equal(:second)
       end
+      
+      it "returns expected value from chaining methods in a string separated by \".\"" do
+        @subject.stub_chain('msg1.msg2.msg3.msg4').and_return(:return_value)
+        @subject.msg1.msg2.msg3.msg4.should equal(:return_value)
+      end
     end
   end
 end

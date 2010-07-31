@@ -23,9 +23,9 @@ module RSpec
       
       alias_method :stub!, :stub
       alias_method :unstub!, :unstub
-
+      
       def stub_chain(*methods)
-        if methods.length > 1
+        if methods = methods.join('.').split('.') and methods.length > 1
           next_in_chain = Object.new
           stub!(methods.shift) {next_in_chain}
           next_in_chain.stub_chain(*methods)
